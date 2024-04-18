@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
+	js "github.com/Chemaclass/go-url-shortener/serializer/json"
+	ms "github.com/Chemaclass/go-url-shortener/serializer/msgpack"
 	"github.com/Chemaclass/go-url-shortener/shortener"
-	js "github.com/Chemaclass/go-url-shortener/shortener/json"
-	ms "github.com/Chemaclass/go-url-shortener/shortener/msgpack"
 	"github.com/go-chi/chi"
 	"github.com/pkg/errors"
 )
@@ -86,5 +86,6 @@ func (h *handler) Post(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
+
 	setupResponse(w, contentType, responseBody, http.StatusCreated)
 }
